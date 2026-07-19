@@ -1,0 +1,31 @@
+{pkgs, ...}: {
+  environment.systemPackages = with pkgs; [
+    alejandra
+    bash-completion
+    bat
+    brave
+    chafa
+    deadnix
+    dmidecode
+    eza
+    fd
+    gcc
+    glib
+    hunspell
+    hunspellDicts.en-gb-large
+    jq
+    nil
+    nix-bash-completions
+    noisetorch
+    nvtopPackages.nvidia
+    openhue-cli
+    pciutils
+    pulseaudio
+    ripgrep
+    statix
+    tree
+    tailscale
+    wget
+    wl-clipboard
+  ];
+}
