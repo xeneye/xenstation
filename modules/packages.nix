@@ -1,5 +1,11 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
+    (blender.override {
+      config = {
+        cudaSupport = true;
+        rocmSupport = false;
+      };
+    })
     alejandra
     audacity
     bash-completion

@@ -59,6 +59,7 @@
       aj = "sudo -E alejandra";
       dn = "sudo -E deadnix";
       update = "sudo nixos-rebuild switch --flake /etc/nixos#xenstation";
+      cleanup = "sudo nix-collect-garbage";
       nx = "cd /etc/nixos";
       ollama = "docker exec -it ollama ollama";
       hermes = "docker exec -it hermes hermes";
