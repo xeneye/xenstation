@@ -1,0 +1,54 @@
+[General]
+Days Meta Infos=30
+PinnedDocuments=
+Save Meta Infos=true
+Show Full Path in Title=false
+Show Menu Bar=true
+Show Status Bar=true
+Show Tab Bar=true
+Show Url Nav Bar=true
+Show welcome view for new window=false
+
+[KFileDialog Settings]
+Places Icons Auto-resize=false
+Places Icons Static Size=22
+
+[MainWindow]
+3072x1728 screen: Height=1638
+3072x1728 screen: Width=1532
+
+[filetree]
+editShade=67,74,78
+listMode=false
+middleClickToClose=false
+shadingEnabled=true
+showCloseButton=false
+showFullPathOnRoots=false
+showToolbar=true
+sortRole=0
+viewShade=77,46,91
+
+[lspclient]
+AllowedServerCommandLines=/run/current-system/sw/bin/nil
+AutoHover=true
+AutoImport=true
+BlockedServerCommandLines=
+CompletionDocumentation=true
+CompletionParens=true
+Diagnostics=true
+FormatOnSave=false
+HighlightGoto=true
+HighlightSymbol=true
+IncrementalSync=false
+InlayHints=false
+Messages=true
+ReferencesDeclaration=true
+SemanticHighlighting=true
+ServerConfiguration=
+ShowCompletions=true
+SignatureHelp=true
+SymbolDetails=false
+SymbolExpand=true
+SymbolSort=false
+SymbolTree=true
+TypeFormatting=false

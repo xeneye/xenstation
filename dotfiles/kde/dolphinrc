@@ -1,0 +1,35 @@
+MenuBar=Disabled
+
+[ContextMenu]
+ShowCopyMoveMenu=true
+
+[General]
+ConfirmClosingMultipleTabs=false
+ConfirmClosingTerminalRunningProgram=false
+EditableUrl=true
+FilterBar=true
+OpenExternallyCalledFolderInNewTab=true
+RememberOpenedTabs=false
+TabStyle=FixedSize
+UseTabForSwitchingSplitView=true
+Version=202
+ViewPropsTimestamp=2026,7,18,15,56,45.536
+
+[InformationPanel]
+dateFormat=ShortFormat
+
+[KFileDialog Settings]
+Places Icons Auto-resize=false
+Places Icons Static Size=22
+
+[MainWindow]
+MenuBar=Disabled
+
+[Notification Messages]
+ConfirmOpenManyFolders=false
+ConfirmOpenManyTerminals=false
+ConfirmRenameFileType=false
+warnAboutRisksBeforeActingAsAdmin=false
+
+[PreviewSettings]
+Plugins=appimagethumbnail,audiothumbnail,blenderthumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,directorythumbnail,fontthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,mobithumbnail,opendocumentthumbnail,gsthumbnail,rawthumbnail,svgthumbnail,ffmpegthumbs

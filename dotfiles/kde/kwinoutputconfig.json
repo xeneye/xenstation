@@ -1,0 +1,71 @@
+[
+    {
+        "data": [
+            {
+                "allowDdcCi": true,
+                "allowSdrSoftwareBrightness": true,
+                "autoBrightnessCurve": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "autoRotation": "InTabletMode",
+                "automaticBrightness": false,
+                "brightness": 1,
+                "colorPowerTradeoff": "PreferEfficiency",
+                "colorProfileSource": "sRGB",
+                "connectorName": "HDMI-A-1",
+                "customModes": [
+                ],
+                "detectedDdcCi": false,
+                "edidHash": "fb73f27c63d186575433f8d3cfea3e8b",
+                "edidIdentifier": "GSM 49352 16843009 1 2022 0",
+                "edrPolicy": "always",
+                "highDynamicRange": true,
+                "iccProfilePath": "",
+                "maxBitsPerColor": 0,
+                "maxPeakBrightnessOverride": 800,
+                "mode": {
+                    "flags": 0,
+                    "height": 2160,
+                    "refreshRate": 119880,
+                    "width": 3840
+                },
+                "overscan": 0,
+                "rgbRange": "Automatic",
+                "scale": 1.25,
+                "sdrBrightness": 200,
+                "sdrGamutWideness": 0,
+                "sharpness": 0,
+                "transform": "Normal",
+                "uuid": "dc814f24-dd5d-4f82-b2a8-fa9c59b72b54",
+                "vrrPolicy": "Automatic",
+                "wideColorGamut": true
+            }
+        ],
+        "name": "outputs"
+    },
+    {
+        "data": [
+            {
+                "lidClosed": false,
+                "outputs": [
+                    {
+                        "enabled": true,
+                        "outputIndex": 0,
+                        "position": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "priority": 1,
+                        "replicationSource": ""
+                    }
+                ]
+            }
+        ],
+        "name": "setups"
+    }
+]

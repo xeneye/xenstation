@@ -1,0 +1,7 @@
+[Keyboard]
+NumLock=0
+RepeatDelay=400
+RepeatRate=40
+
+[Libinput][6940][7132][Corsair CORSAIR SLIPSTREAM WIRELESS USB Receiver]
+PointerAccelerationProfile=1

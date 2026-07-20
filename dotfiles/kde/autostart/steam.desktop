@@ -1,0 +1,57 @@
+[Desktop Entry]
+Actions=Store;Community;Library;Servers;Screenshots;News;Settings;BigPicture;Friends;
+Categories=Network;FileTransfer;Game;
+Comment[en_GB]=
+Comment=
+Exec=env __GL_SHADER_DISK_CACHE_SKIP_CLEANUP=1 LD_PRELOAD= PROTON_ENABLE_WAYLAND=1 DXVK_HDR=1 PROTON_DLSS_UPGRADE=1 steam -silent %U
+GenericName[en_GB]=
+GenericName=
+Icon=steam
+MimeType=
+Name[en_GB]=Steam
+Name=Steam
+NoDisplay=false
+Path=
+PrefersNonDefaultGPU=true
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=
+
+[Desktop Action BigPicture]
+Exec=steam steam://open/bigpicture
+Name=Big Picture
+
+[Desktop Action Community]
+Exec=steam steam://url/CommunityHome/
+Name=Community
+
+[Desktop Action Friends]
+Exec=steam steam://open/friends
+Name=Friends
+
+[Desktop Action Library]
+Exec=steam steam://open/games
+Name=Library
+
+[Desktop Action News]
+Exec=steam steam://openurl/https://store.steampowered.com/news
+Name=News
+
+[Desktop Action Screenshots]
+Exec=steam steam://open/screenshots
+Name=Screenshots
+
+[Desktop Action Servers]
+Exec=steam steam://open/servers
+Name=Servers
+
+[Desktop Action Settings]
+Exec=steam steam://open/settings
+Name=Settings
+
+[Desktop Action Store]
+Exec=steam steam://store
+Name=Store

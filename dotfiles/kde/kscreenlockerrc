@@ -1,0 +1,9 @@
+[Daemon]
+Autolock=false
+LockOnResume=false
+RequirePassword=false
+Timeout=0
+
+[Greeter][Wallpaper][org.kde.image][General]
+Image=file:///home/xeneye/Pictures/Wallpaper/2K Ultrawide Sci-Fi/Criptica Diethyl-Nix.png
+PreviewImage=file:///home/xeneye/Pictures/Wallpaper/2K Ultrawide Sci-Fi/Criptica Diethyl-Nix.png
