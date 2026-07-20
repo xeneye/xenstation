@@ -4,6 +4,7 @@
     ./modules/bluetooth.nix
     ./modules/boot.nix
     ./modules/fonts.nix
+    ./modules/hue.nix
     ./modules/keymap.nix
     ./modules/nvidia.nix
     ./modules/packages.nix
@@ -47,9 +48,10 @@
     user = "xeneye";
   };
 
-  services.tailscale.enable = true;
-  services.fwupd.enable = true;
   services.fstrim.enable = true;
+  services.fwupd.enable = true;
+  services.hue.enable = true;
+  services.tailscale.enable = true;
 
   services.avahi = {
     enable = true;
