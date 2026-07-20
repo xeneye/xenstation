@@ -4,7 +4,7 @@
   inputs,
   ...
 }: let
-  alga = inputs.alga.packages.${pkgs.system}.default;
+  alga = inputs.alga.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
   tv = "lgtv";
   input = "HDMI_2";
