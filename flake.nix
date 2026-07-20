@@ -12,16 +12,26 @@
     nixvim = {
       url = "github:nix-community/nixvim/nixos-26.05";
     };
+
+    alga = {
+      url = "github:Tenzer/alga";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = {
+  outputs = inputs @ {
     nixpkgs,
     home-manager,
     nixvim,
+    alga,
     ...
   }: {
     nixosConfigurations.xenstation = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+
+      specialArgs = {
+        inherit inputs;
+      };
 
       modules = [
         ./configuration.nix

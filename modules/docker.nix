@@ -12,7 +12,7 @@
     daemon.settings = {
       features = {
         buildkit = true;
-	cdi = true;
+        cdi = true;
       };
 
       log-driver = "json-file";

@@ -7,6 +7,7 @@
     ./modules/fonts.nix
     ./modules/hue.nix
     ./modules/keymap.nix
+    ./modules/lgtv.nix
     ./modules/nvidia.nix
     ./modules/packages.nix
     ./modules/pipewire.nix
