@@ -3,6 +3,7 @@
     ./hardware-configuration.nix
     ./modules/bluetooth.nix
     ./modules/boot.nix
+    ./modules/docker.nix
     ./modules/fonts.nix
     ./modules/hue.nix
     ./modules/keymap.nix
@@ -61,7 +62,7 @@
 
   users.users.xeneye = {
     isNormalUser = true;
-    extraGroups = ["wheel" "networkmanager" "input"];
+    extraGroups = ["wheel" "networkmanager" "input" "docker"];
   };
 
   environment.plasma6.excludePackages = with pkgs.kdePackages; [

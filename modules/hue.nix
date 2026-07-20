@@ -1,8 +1,10 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   # Machine-specific settings
   username = "xeneye";
   homeDir = "/home/${username}";
@@ -57,15 +59,12 @@ let
       esac
     '';
   };
-
-in
-{
+in {
   options.services.hue = {
     enable = mkEnableOption "Man Cave Hue automation";
   };
 
   config = mkIf config.services.hue.enable {
-
     environment.systemPackages = [
       hue
     ];
@@ -73,10 +72,10 @@ in
     systemd.services.hue = {
       description = "Man Cave Hue Lights";
 
-      wantedBy = [ "multi-user.target" ];
+      wantedBy = ["multi-user.target"];
 
-      wants = [ "network-online.target" ];
-      after = [ "network-online.target" ];
+      wants = ["network-online.target"];
+      after = ["network-online.target"];
 
       serviceConfig = {
         Type = "oneshot";
