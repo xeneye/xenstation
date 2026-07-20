@@ -1,6 +1,4 @@
-# modules/lgtv.nix
 {
-  config,
   lib,
   pkgs,
   inputs,
@@ -16,7 +14,6 @@
 
     ${lib.getExe alga} --tv ${tv} power on
 
-    # Wait for the TV to become available.
     for _ in $(seq 1 30); do
       if ${lib.getExe alga} --tv ${tv} input list >/dev/null 2>&1; then
         break
@@ -50,29 +47,26 @@ in {
     lgtv-toggle
   ];
 
-  systemd.user.services.lgtv-on = {
-    description = "Turn on LG TV at login";
+  systemd.services.lgtv = {
+    description = "LG TV lifecycle";
 
-    wantedBy = ["default.target"];
+    wantedBy = ["multi-user.target"];
 
-    after = ["graphical-session.target"];
+    wants = ["network-online.target"];
+    after = ["network-online.target"];
 
     serviceConfig = {
       Type = "oneshot";
+      RemainAfterExit = true;
+
+      User = "xeneye";
+      Environment = "HOME=/home/xeneye";
+
       ExecStart = lib.getExe lgtv-on;
-    };
-  };
+      ExecStop = lib.getExe lgtv-off;
 
-  systemd.services.lgtv-off = {
-    description = "Turn off LG TV at shutdown";
-
-    wantedBy = ["shutdown.target"];
-    before = ["shutdown.target"];
-
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.systemd}/bin/systemd-inhibit --what=shutdown --mode=block ${lib.getExe lgtv-off}";
-      TimeoutStartSec = 15;
+      TimeoutStartSec = 45;
+      TimeoutStopSec = 15;
     };
   };
 }
