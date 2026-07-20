@@ -1,23 +1,30 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     alejandra
+    audacity
     bash-completion
     bat
+    blender
     brave
     chafa
+    davinci-resolve
     deadnix
     dmidecode
     eza
     fd
     gcc
+    gimp-with-plugins
     glib
     hunspell
     hunspellDicts.en-gb-large
     jq
+    libreoffice-qt-fresh
+    hyphenDicts.en-gb
     nil
     nix-bash-completions
     noisetorch
     nvtopPackages.nvidia
+    obs-studio
     openhue-cli
     pciutils
     pulseaudio
@@ -25,6 +32,7 @@
     statix
     tree
     tailscale
+    vlc
     wget
     wl-clipboard
   ];

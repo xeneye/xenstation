@@ -12,9 +12,11 @@
 
   home.packages = with pkgs; [
     kdePackages.bluedevil
-    kdePackages.kcolorchooser
     kdePackages.kate
+    kdePackages.kcolorchooser
+    kdePackages.phonon-vlc
     kdePackages.print-manager
+    kdePackages.skanlite
     alejandra
     deadnix
     espanso-wayland
