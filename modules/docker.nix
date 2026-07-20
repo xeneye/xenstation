@@ -12,6 +12,7 @@
     daemon.settings = {
       features = {
         buildkit = true;
+	cdi = true;
       };
 
       log-driver = "json-file";
@@ -21,4 +22,5 @@
       };
     };
   };
+  hardware.nvidia-container-toolkit.enable = true;
 }
