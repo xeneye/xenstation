@@ -8,8 +8,14 @@
 
   vmHome = "/home/${username}/.vm";
 
-  poolName = "vm-images";
-  poolPath = "${vmHome}/images";
+  imagePoolName = "vm-images";
+  imagePoolPath = "${vmHome}/images";
+
+  isoPoolName = "vm-isos";
+  isoPoolPath = "${vmHome}/isos";
+
+  driversPoolName = "vm-drivers";
+  driversPoolPath = "${vmHome}/drivers";
 in {
   virtualisation.libvirtd = {
     enable = true;
@@ -37,6 +43,7 @@ in {
     bridge-utils
     libguestfs
     qemu
+    qemu_kvm
     spice-gtk
     spice-vdagent
     usbredir
@@ -47,23 +54,31 @@ in {
 
   systemd.tmpfiles.rules = [
     "d ${vmHome} 0755 ${username} ${group} -"
-    "d ${vmHome}/images 0755 ${username} ${group} -"
-    "d ${vmHome}/isos 0755 ${username} ${group} -"
-    "d ${vmHome}/exports 0755 ${username} ${group} -"
+    "d ${imagePoolPath} 0755 ${username} ${group} -"
+    "d ${isoPoolPath} 0755 ${username} ${group} -"
+    "d ${driversPoolPath} 0755 ${username} ${group} -"
+    "d ${vmHome}/shared 0755 ${username} ${group} -"
     "d ${vmHome}/snapshots 0755 ${username} ${group} -"
     "d ${vmHome}/scripts 0755 ${username} ${group} -"
   ];
 
-  system.activationScripts.vmVirtioIso.text = ''
-    ln -sfn \
-      /run/current-system/sw/share/virtio-win/virtio-win.iso \
-      ${vmHome}/isos/virtio-win.iso
+  system.activationScripts.vmVirtioDrivers.text = ''
+    mkdir -p "${driversPoolPath}"
 
-    chown -h ${username}:${group} ${vmHome}/isos/virtio-win.iso || true
+    # Remove anything currently in the directory.
+    find "${driversPoolPath}" -mindepth 1 -maxdepth 1 \
+      -exec rm -rf {} +
+
+    # Populate it from the Nix store.
+    for item in ${pkgs.virtio-win}/*; do
+      ln -s "$item" "${driversPoolPath}/$(basename "$item")"
+    done
+
+    chown -h ${username}:${group} "${driversPoolPath}"/* 2>/dev/null || true
   '';
 
-  systemd.services.libvirt-storage-pool = {
-    description = "Ensure libvirt VM storage pool exists";
+  systemd.services.libvirt-storage-pools = {
+    description = "Ensure libvirt storage pools exist";
 
     after = ["libvirtd.service"];
     requires = ["libvirtd.service"];
@@ -80,17 +95,29 @@ in {
     script = ''
       set -euo pipefail
 
-      if ! virsh pool-info ${poolName} >/dev/null 2>&1; then
-        echo "Creating libvirt storage pool '${poolName}'"
+      create_pool() {
+        local name="$1"
+        local target="$2"
 
-        virsh pool-define-as \
-          --name ${poolName} \
-          --type dir \
-          --target ${poolPath}
-      fi
+        mkdir -p "$target"
 
-      virsh pool-start ${poolName} >/dev/null 2>&1 || true
-      virsh pool-autostart ${poolName} >/dev/null 2>&1 || true
+        if ! virsh -c qemu:///system pool-info "$name" >/dev/null 2>&1; then
+          echo "Creating storage pool '$name'"
+
+          virsh -c qemu:///system pool-define-as \
+            --name "$name" \
+            --type dir \
+            --target "$target"
+        fi
+
+        virsh -c qemu:///system pool-build "$name" >/dev/null 2>&1 || true
+        virsh -c qemu:///system pool-start "$name" >/dev/null 2>&1 || true
+        virsh -c qemu:///system pool-autostart "$name" >/dev/null 2>&1 || true
+      }
+
+      create_pool "${imagePoolName}" "${imagePoolPath}"
+      create_pool "${isoPoolName}" "${isoPoolPath}"
+      create_pool "${driversPoolName}" "${driversPoolPath}"
     '';
   };
 }
