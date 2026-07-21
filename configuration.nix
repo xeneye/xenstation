@@ -9,6 +9,7 @@
     ./modules/keymap.nix
     ./modules/lgtv.nix
     ./modules/nvidia.nix
+    ./modules/obs.nix
     ./modules/packages.nix
     ./modules/pipewire.nix
     ./modules/printer.nix
@@ -69,10 +70,14 @@
     user = "xeneye";
   };
 
-  services.fstrim.enable = true;
   services.fwupd.enable = true;
   services.hue.enable = true;
   services.tailscale.enable = true;
+
+  services.fstrim = {
+    enable = true;
+    interval = "daily";
+  };
 
   services.avahi = {
     enable = true;

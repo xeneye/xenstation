@@ -10,7 +10,6 @@
     audacity
     bash-completion
     bat
-    blender
     brave
     chafa
     davinci-resolve
@@ -18,6 +17,7 @@
     dmidecode
     eza
     fd
+    filezilla
     gcc
     gimp-with-plugins
     glib
@@ -30,7 +30,6 @@
     nix-bash-completions
     noisetorch
     nvtopPackages.nvidia
-    obs-studio
     openhue-cli
     pciutils
     pulseaudio
