@@ -15,6 +15,7 @@
     ./modules/printer.nix
     ./modules/steam.nix
     ./modules/syncthing.nix
+    ./modules/vm.nix
   ];
 
   nixpkgs.config = {
@@ -88,10 +89,12 @@
   users.users.xeneye = {
     isNormalUser = true;
     extraGroups = [
-      "wheel"
-      "networkmanager"
-      "input"
       "docker"
+      "input"
+      "kvm"
+      "libvirtd"
+      "networkmanager"
+      "wheel"
     ];
   };
 
