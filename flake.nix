@@ -22,7 +22,6 @@
       url = "https://flakehub.com/f/edolstra/blender-bin/*";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
   };
 
   outputs = inputs @ {
