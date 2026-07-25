@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
+    ./modules/blender.nix
     ./modules/bluetooth.nix
     ./modules/boot.nix
     ./modules/docker.nix
