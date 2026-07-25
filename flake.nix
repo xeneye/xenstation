@@ -17,6 +17,9 @@
       url = "github:Tenzer/alga";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    blender-bin.url = "https://flakehub.com/f/edolstra/blender-bin/*";
+
   };
 
   outputs = inputs @ {
