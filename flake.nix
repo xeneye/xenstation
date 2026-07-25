@@ -18,7 +18,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    blender-bin.url = "https://flakehub.com/f/edolstra/blender-bin/*";
+    blender-bin = {
+      url = "https://flakehub.com/f/edolstra/blender-bin/*";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   };
 
