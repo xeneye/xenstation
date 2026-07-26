@@ -1,9 +1,21 @@
 {pkgs, ...}: {
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.timeout = 0;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    timeout = 0;
+
+    efi.canTouchEfiVariables = true;
+
+    systemd-boot = {
+      enable = true;
+
+      # Prevent editing kernel command line at boot.
+      editor = false;
+
+      # Use the highest resolution supported by the firmware.
+      consoleMode = "max";
+    };
+  };
 
   boot.kernelParams = [
     "quiet"

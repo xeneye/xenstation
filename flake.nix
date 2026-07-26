@@ -24,13 +24,14 @@
     };
   };
 
-  outputs = inputs @ {
+  outputs = {
     nixpkgs,
     home-manager,
     nixvim,
     alga,
+    blender-bin,
     ...
-  }: {
+  } @ inputs: {
     nixosConfigurations.xenstation = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
 
