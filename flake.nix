@@ -22,14 +22,18 @@
       url = "https://flakehub.com/f/edolstra/blender-bin/*";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hermes-agent = {
+      url = "github:NousResearch/hermes-agent";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     nixpkgs,
     home-manager,
     nixvim,
-    alga,
-    blender-bin,
+    hermes-agent,
     ...
   } @ inputs: {
     nixosConfigurations.xenstation = nixpkgs.lib.nixosSystem {
@@ -40,6 +44,8 @@
       };
 
       modules = [
+        hermes-agent.nixosModules.default
+
         ./configuration.nix
 
         home-manager.nixosModules.home-manager

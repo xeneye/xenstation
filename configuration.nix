@@ -6,11 +6,13 @@
     ./modules/boot.nix
     ./modules/docker.nix
     ./modules/fonts.nix
+    ./modules/hermes.nix
     ./modules/hue.nix
     ./modules/keymap.nix
     ./modules/lgtv.nix
     ./modules/nvidia.nix
     ./modules/obs.nix
+    ./modules/ollama.nix
     ./modules/packages.nix
     ./modules/pipewire.nix
     ./modules/printer.nix
@@ -93,6 +95,7 @@
       "libvirtd"
       "networkmanager"
       "wheel"
+      "hermes"
     ];
   };
 

@@ -13,6 +13,7 @@
     fd
     filezilla
     gcc
+    gh
     gimp-with-plugins
     glib
     hunspell
