@@ -5,7 +5,6 @@
 
     globals.mapleader = " ";
 
-    # Neovim options
     opts = {
       relativenumber = true;
       incsearch = true;

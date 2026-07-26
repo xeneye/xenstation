@@ -26,6 +26,8 @@
     "nowatchdog"
     "nmi_watchdog=0"
     "modprobe.blacklist=iTCO_wdt,iTCO_vendor_support,snd_hda_intel"
+    "iommu=pt"
+    "intel_iommu=on"
   ];
 
   boot.consoleLogLevel = 0;

@@ -8,7 +8,6 @@
         padding = {
           top = 4;
           left = 4;
-          #bottom = 4;
         };
       };
       display = {
