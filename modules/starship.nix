@@ -1,10 +1,131 @@
 {...}: {
   programs.starship = {
     enable = true;
+
     settings = {
       "$schema" = "https://starship.rs/config-schema.json";
-      aws.symbol = " ";
-      azure.symbol = " ";
+
+      ######################################################################
+      # Prompt Layout
+      ######################################################################
+
+      add_newline = true;
+
+      format = ''
+        [╭─](bold #7aa2f7)$os$username$hostname$fill$cmd_duration$time
+        [│](bold #7aa2f7)$directory$git_branch$git_status
+        [╰─](bold #7aa2f7)$character
+      '';
+
+      right_format = "$battery";
+
+      fill.symbol = " ";
+
+      character = {
+        success_symbol = "[❯](bold green)";
+        error_symbol = "[❯](bold red)";
+        vimcmd_symbol = "[❮](bold yellow)";
+      };
+
+      ######################################################################
+      # OS
+      ######################################################################
+
+      os = {
+        disabled = false;
+        style = "bold cyan";
+
+        symbols.NixOS = " ";
+      };
+
+      ######################################################################
+      # Username / Hostname
+      ######################################################################
+
+      username = {
+        show_always = true;
+        style_user = "7dcfff";
+        format = "[$user]($style)";
+      };
+
+      hostname = {
+        ssh_only = false;
+        style = "89b4fa";
+        format = "[@$hostname]($style)";
+      };
+
+      ######################################################################
+      # Directory
+      ######################################################################
+
+      directory = {
+        style = "bold blue";
+
+        truncation_length = 4;
+        truncate_to_repo = false;
+
+        home_symbol = "󰋜 ";
+        read_only = "󰌾 ";
+
+        substitutions = {
+          Desktop = " ";
+          Documents = "󰈙 ";
+          Downloads = " ";
+          Music = " ";
+          Pictures = " ";
+          Videos = " ";
+          Projects = " ";
+          Development = "󰲋 ";
+        };
+      };
+
+      ######################################################################
+      # Git
+      ######################################################################
+
+      git_branch = {
+        symbol = " ";
+        style = "bold magenta";
+      };
+
+      git_status = {
+        style = "bold green";
+      };
+
+      ######################################################################
+      # Nix Shell
+      ######################################################################
+
+      nix_shell = {
+        symbol = " ";
+        format = "[$symbol$state]($style)";
+      };
+
+      ######################################################################
+      # Command Duration
+      ######################################################################
+
+      cmd_duration = {
+        min_time = 1000;
+        style = "yellow";
+        format = "[$duration]($style) ";
+      };
+
+      ######################################################################
+      # Time
+      ######################################################################
+
+      time = {
+        disabled = false;
+        time_format = "%H:%M";
+        style = "dimmed white";
+        format = "[ $time]($style)";
+      };
+
+      ######################################################################
+      # Battery
+      ######################################################################
+
       battery = {
         full_symbol = "󰁹 ";
         charging_symbol = "󰂄 ";
@@ -12,154 +133,61 @@
         unknown_symbol = "󰂑 ";
         empty_symbol = "󰂎 ";
       };
-      buf.symbol = " ";
-      bun.symbol = " ";
-      c.symbol = " ";
-      cpp.symbol = " ";
-      cmake.symbol = " ";
-      cobol.symbol = " ";
-      conda.symbol = " ";
-      container.symbol = " ";
-      crystal.symbol = " ";
-      dart.symbol = " ";
-      deno.symbol = " ";
-      direnv.symbol = " ";
-      directory = {
-        read_only = " 󰌾";
-      };
-      docker_context.symbol = " ";
-      dotnet.symbol = " ";
-      elixir.symbol = " ";
-      elm.symbol = " ";
-      erlang.symbol = " ";
-      fennel.symbol = " ";
-      fortran.symbol = " ";
-      fossil_branch.symbol = " ";
-      gcloud.symbol = "󱇶 ";
-      gleam.symbol = " ";
-      git_branch.symbol = " ";
-      git_commit = {
-        tag_symbol = "  ";
-      };
-      golang.symbol = " ";
-      gradle.symbol = " ";
-      guix_shell.symbol = " ";
-      haskell.symbol = " ";
-      haxe.symbol = " ";
-      helm.symbol = " ";
-      hg_branch.symbol = " ";
-      hostname = {
-        ssh_symbol = " ";
-      };
-      java.symbol = " ";
-      julia.symbol = " ";
-      kotlin.symbol = " ";
-      kubernetes.symbol = "󱃾 ";
-      lua.symbol = " ";
-      maven.symbol = " ";
-      memory_usage.symbol = "󰍛 ";
-      meson.symbol = "󰔷 ";
-      mojo.symbol = "󰈸 ";
-      nats.symbol = " ";
-      netns.symbol = "󰛳 ";
-      nim.symbol = " ";
-      nix_shell.symbol = " ";
-      nodejs.symbol = " ";
-      ocaml.symbol = " ";
-      odin.symbol = "󰟢 ";
-      opa.symbol = " ";
-      openstack.symbol = " ";
-      os.symbols = {
-        AIX = " ";
-        AlmaLinux = " ";
-        Alpaquita = " ";
-        Alpine = " ";
-        ALTLinux = " ";
-        Amazon = " ";
-        Android = " ";
-        AOSC = " ";
-        Arch = " ";
-        Artix = " ";
-        Bluefin = " ";
-        CachyOS = " ";
-        CentOS = " ";
-        Debian = " ";
-        DragonFly = " ";
-        Elementary = " ";
-        Emscripten = " ";
-        EndeavourOS = " ";
-        Fedora = " ";
-        FreeBSD = " ";
-        Garuda = " ";
-        Gentoo = " ";
-        HardenedBSD = "󰞌 ";
-        Illumos = " ";
-        InstantOS = " ";
-        Ios = "󰀷 ";
-        Kali = " ";
-        Linux = " ";
-        Mabox = " ";
-        Macos = " ";
-        Manjaro = " ";
-        Mariner = " ";
-        MidnightBSD = " ";
-        Mint = " ";
-        NetBSD = " ";
-        NixOS = " ";
-        Nobara = " ";
-        OpenBSD = " ";
-        OpenCloudOS = " ";
-        openEuler = " ";
-        openSUSE = " ";
-        OracleLinux = "󰺡 ";
-        PikaOS = " ";
-        Pop = " ";
-        Raspbian = " ";
-        Redhat = "󱄛 ";
-        RedHatEnterprise = "󱄛 ";
-        Redox = "󰀘 ";
-        RockyLinux = " ";
-        Solus = " ";
-        SUSE = " ";
-        Ubuntu = " ";
-        Ultramarine = " ";
-        Unknown = " ";
-        Uos = " ";
-        Void = " ";
-        Windows = "󰍲 ";
-        Zorin = " ";
-      };
+
+      ######################################################################
+      # Language Icons
+      ######################################################################
+
       package.symbol = "󰏗 ";
-      perl.symbol = " ";
-      php.symbol = " ";
-      pijul_channel.symbol = " ";
-      pixi.symbol = "󰏗 ";
-      pulumi.symbol = " ";
-      purescript.symbol = " ";
+
       python.symbol = " ";
-      raku.symbol = "󱖊 ";
-      red.symbol = "󱍼 ";
-      rlang.symbol = "󰟔 ";
-      ruby.symbol = " ";
+      nodejs.symbol = " ";
       rust.symbol = "󱘗 ";
-      scala.symbol = " ";
-      shlvl.symbol = "󰹍 ";
-      singularity.symbol = " ";
-      solidity.symbol = " ";
-      spack.symbol = " ";
-      status.symbol = " ";
-      sudo.symbol = " ";
-      swift.symbol = " ";
+      golang.symbol = " ";
+      java.symbol = " ";
+
+      docker_context.symbol = " ";
+
+      kubernetes.symbol = "󱃾 ";
+
       terraform.symbol = " ";
-      vlang.symbol = " ";
-      typst.symbol = " ";
-      vagrant.symbol = " ";
-      xmake.symbol = " ";
+
+      lua.symbol = " ";
+
+      ruby.symbol = " ";
+
+      php.symbol = " ";
+
+      swift.symbol = " ";
+
       zig.symbol = " ";
-      add_newline = true;
-      character = {
-        success_symbol = "[➜](bold green)";
-        error_symbol = "[✗](bold red)";
+
+      c.symbol = " ";
+
+      cpp.symbol = " ";
+
+      cmake.symbol = " ";
+
+      dotnet.symbol = " ";
+
+      kotlin.symbol = " ";
+
+      haskell.symbol = " ";
+
+      scala.symbol = " ";
+
+      dart.symbol = " ";
+
+      deno.symbol = " ";
+
+      bun.symbol = " ";
+
+      docker_context.only_with_files = true;
+
+      memory_usage = {
+        disabled = false;
+        threshold = -1;
+        symbol = "󰍛 ";
       };
     };
   };
