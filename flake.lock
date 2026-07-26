@@ -24,6 +24,25 @@
         "type": "github"
       }
     },
+    "blender-bin": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1766785730,
+        "narHash": "sha256-nkV8QHO5bp6C3a/dRjYxCV1EJtI/R4rSU4RAuunL+Ss=",
+        "rev": "32a73188c4026cea3f8ed97078ace45bf9f7f578",
+        "revCount": 151,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/edolstra/blender-bin/1.0.21/019b5ca3-dbde-7440-9e6b-f78ba88d11c8/source.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://flakehub.com/f/edolstra/blender-bin/%2A"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -188,6 +207,7 @@
     "root": {
       "inputs": {
         "alga": "alga",
+        "blender-bin": "blender-bin",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim"
