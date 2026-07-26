@@ -7,7 +7,6 @@
     ./modules/docker.nix
     ./modules/fonts.nix
     ./modules/hue.nix
-    ./modules/kernel.nix
     ./modules/keymap.nix
     ./modules/lgtv.nix
     ./modules/nvidia.nix
@@ -35,13 +34,11 @@
     substituters = [
       "https://cache.nixos.org"
       "https://cache.nixos-cuda.org"
-      "https://attic.xuyh0120.win/lantian"
     ];
 
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
-      "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
     ];
   };
 

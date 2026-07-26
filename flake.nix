@@ -22,10 +22,6 @@
       url = "https://flakehub.com/f/edolstra/blender-bin/*";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nix-cachyos-kernel = {
-      url = "github:xddxdd/nix-cachyos-kernel/release";
-    };
   };
 
   outputs = {
@@ -34,7 +30,6 @@
     nixvim,
     alga,
     blender-bin,
-    nix-cachyos-kernel,
     ...
   } @ inputs: {
     nixosConfigurations.xenstation = nixpkgs.lib.nixosSystem {

@@ -6,7 +6,7 @@
         source = "nixos";
         type = "small";
         padding = {
-          top = 4;
+          top = 3;
           left = 4;
         };
       };
@@ -39,14 +39,6 @@
         {
           key = "│  kernel  │";
           type = "kernel";
-        }
-        {
-          key = "│  term    │";
-          type = "terminal";
-        }
-        {
-          key = "│  shell   │";
-          type = "shell";
         }
         {
           key = "│ 󰍛 cpu     │";
