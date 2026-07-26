@@ -1,0 +1,16 @@
+/* GIMP theme.css
+ *
+ * This file is written on GIMP startup and on every theme change.
+ * It is NOT supposed to be edited manually. Edit your personal
+ * gimp.css file instead (/home/xeneye/.config/GIMP/3.0/gimp.css).
+ */
+
+@import url("file:///nix/store/p3zrkij16k4dli8yj2rhcrm822v1h27w-gimp-with-plugins-3.0.8/share/gimp/3.0/themes/Default/gimp-dark.css");
+@import url("file:///nix/store/yiqbjxir6m9r60skzaab0hdprqxsjn1k-gimp-3.0.8/etc/gimp/3.0/gimp.css");
+
+* { -gtk-icon-style: symbolic; }
+
+/* prefer-dark-theme */
+
+
+/* end of theme.css */

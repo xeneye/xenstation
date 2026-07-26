@@ -1,0 +1,11 @@
+# GIMP gimp-crop-tool options
+
+(aspect-denominator 1080)
+(aspect-numerator 1920)
+(desired-fixed-size-height 1440)
+(desired-fixed-size-width 3440)
+(fixed-rule size)
+(overridden-fixed-size yes)
+(pattern "Pine")
+
+# end of gimp-crop-tool options

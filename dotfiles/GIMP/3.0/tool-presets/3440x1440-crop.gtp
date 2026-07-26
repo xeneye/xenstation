@@ -1,0 +1,24 @@
+# GIMP tool preset file
+
+(icon-name "gimp-tool-crop")
+(name "3440x1440 crop")
+(tool-options "GimpCropOptions"
+    (aspect-denominator 1450)
+    (aspect-numerator 3100)
+    (desired-fixed-size-height 1440)
+    (desired-fixed-size-width 3440)
+    (fixed-rule size)
+    (fixed-rule-active yes)
+    (overridden-fixed-size yes)
+    (tool "gimp-crop-tool"))
+(use-fg-bg no)
+(use-opacity-paint-mode no)
+(use-brush no)
+(use-dynamics no)
+(use-mypaint-brush no)
+(use-gradient no)
+(use-pattern no)
+(use-palette no)
+(use-font no)
+
+# end of GIMP tool preset file
