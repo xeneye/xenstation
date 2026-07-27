@@ -5,6 +5,7 @@
     ./modules/bluetooth.nix
     ./modules/boot.nix
     ./modules/docker.nix
+    ./modules/docker-ai.nix
     ./modules/fonts.nix
     ./modules/hue.nix
     ./modules/keymap.nix
