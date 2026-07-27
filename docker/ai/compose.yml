@@ -31,3 +31,28 @@ services:
 
     volumes:
       - ./data/open-webui:/app/backend/data
+
+  hermes:
+    image: nousresearch/hermes-agent:latest
+    container_name: hermes
+    command: gateway run
+    restart: unless-stopped
+
+    depends_on:
+      - ollama
+
+    stdin_open: true
+    tty: true
+
+    ports:
+      - "8642:8642"
+
+    volumes:
+      - ./data/hermes:/opt/data
+      
+    environment:
+      TZ: Europe/London
+      API_SERVER_ENABLED: "true"
+      API_SERVER_HOST: "0.0.0.0"
+      API_SERVER_PORT: "8642"
+      API_SERVER_KEY: "5f4d1d3b9b0d8c9c8f0f7a7f4c0b8e3a1d9e7f6c5b4a39281726354455667788"
