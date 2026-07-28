@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   systemd.tmpfiles.rules = [
     "d /etc/nixos/docker/ai/data 0755 root root -"
     "d /etc/nixos/docker/ai/data/hermes 0700 10000 10000 -"
