@@ -1,13 +1,8 @@
 { pkgs, ... }:
 
 {
-  # Ensure the AI data directory exists and Hermes has the correct
-  # ownership before the Docker stack starts.
   systemd.tmpfiles.rules = [
-    # Root data directory
     "d /etc/nixos/docker/ai/data 0755 root root -"
-
-    # Hermes persistent data
     "d /etc/nixos/docker/ai/data/hermes 0700 10000 10000 -"
   ];
 
@@ -37,12 +32,12 @@
       RemainAfterExit = true;
       WorkingDirectory = "/etc/nixos/docker/ai";
 
-      # Ensure restored or existing Hermes files always have the
-      # ownership expected by the Hermes container.
       ExecStartPre = [
         "${pkgs.coreutils}/bin/mkdir -p /etc/nixos/docker/ai/data/hermes"
         "${pkgs.coreutils}/bin/chown -R 10000:10000 /etc/nixos/docker/ai/data/hermes"
         "${pkgs.coreutils}/bin/chmod 0700 /etc/nixos/docker/ai/data/hermes"
+
+        "${pkgs.bash}/bin/bash -c 'if [ ! -f /etc/nixos/docker/ai/data/hermes/config.yaml ]; then ${pkgs.coreutils}/bin/install -m 600 /etc/nixos/docker/ai/hermes-config.yaml /etc/nixos/docker/ai/data/hermes/config.yaml; fi'"
       ];
 
       ExecStart = "${pkgs.docker}/bin/docker compose up -d";

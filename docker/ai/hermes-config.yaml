@@ -1,0 +1,11 @@
+model:
+  default: edtorre/gemma4:12b-agent-20gbGPU
+  provider: custom
+  base_url: http://ollama:11434/v1
+  api_key: ${HERMES_CUSTOM_OLLAMA_11434_API_KEY}
+
+custom_providers:
+  - name: Ollama
+    base_url: http://ollama:11434/v1
+    key_env: HERMES_CUSTOM_OLLAMA_11434_API_KEY
+    model: edtorre/gemma4:12b-agent-20gbGPU
