@@ -63,7 +63,7 @@
       nx = "cd /etc/nixos";
       ollama = "docker exec -it ollama ollama";
       hermes = "docker exec -it hermes hermes";
-      geekstation = "ssh xeneye@192.168.1.100"
+      geekstation = "ssh xeneye@192.168.1.100";
     };
   };
 
