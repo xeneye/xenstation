@@ -1,4 +1,3 @@
-nix
 {pkgs, ...}: {
   systemd.tmpfiles.rules = [
     "d /etc/nixos/docker/ai/data 0755 root root -"
