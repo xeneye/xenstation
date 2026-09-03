@@ -1,3 +1,4 @@
+nix
 {pkgs, ...}: {
   systemd.tmpfiles.rules = [
     "d /etc/nixos/docker/ai/data 0755 root root -"
@@ -40,6 +41,24 @@
 
       ExecStart = "${pkgs.docker}/bin/docker compose up -d";
       ExecStop = "${pkgs.docker}/bin/docker compose down";
+    };
+  };
+
+  systemd.services.docker-ai-ollama-pull = {
+    description = "Pull default Ollama model";
+    after = ["docker-ai.service"];
+    requires = ["docker-ai.service"];
+    wantedBy = ["multi-user.target"];
+
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = pkgs.writeShellScript "ollama-pull" ''
+        until [ "$(${pkgs.docker}/bin/docker inspect --format='{{.State.Health.Status}}' ollama 2>/dev/null)" = "healthy" ]; do
+        ${pkgs.coreutils}/bin/sleep 2
+        done
+        ${pkgs.docker}/bin/docker exec ollama ollama pull edtorre/gemma4:12b-agent-20gbGPU
+      '';
     };
   };
 }
