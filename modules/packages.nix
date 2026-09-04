@@ -18,9 +18,10 @@
     glib
     hunspell
     hunspellDicts.en-gb-large
+    hyphenDicts.en-gb
     jq
     libreoffice-qt-fresh
-    hyphenDicts.en-gb
+    media-downloader
     nil
     nix-bash-completions
     noisetorch
