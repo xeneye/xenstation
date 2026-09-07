@@ -20,7 +20,7 @@
     hunspellDicts.en-gb-large
     hyphenDicts.en-gb
     jq
-    libreoffice-qt-fresh
+    libreoffice-qt-stable
     media-downloader
     nil
     nix-bash-completions
