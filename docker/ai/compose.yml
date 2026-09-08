@@ -58,7 +58,14 @@ services:
 
     volumes:
       - ./data/hermes:/opt/data
-      - ./.env:/opt/data/.env:ro
+      # Long syntax so a MISSING .env errors loudly at `up` instead of
+      # Docker silently creating a .env DIRECTORY (the file/folder bug).
+      - type: bind
+        source: ./.env
+        target: /opt/data/.env
+        read_only: true
+        bind:
+          create_host_path: false
 
     environment:
       TZ: Europe/London

@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  lib,
+  pkgs,
+  ...
+}: let
   username = "xeneye";
   group = "users";
 
@@ -47,6 +51,14 @@ in {
     virt-viewer
     virtio-win
   ];
+
+  systemd.services.libvirt-guests = {
+    # Not using libvirt guest auto-shutdown: without it the service fails to
+    # connect to the default URI at power-off and prints
+    # "Can't connect to default. Skipping." on the (quiet) console.
+    wantedBy = lib.mkForce [];
+    unitConfig.ConditionPathExists = "/etc/libvirt/qemu"; # only runs if VMs defined
+  };
 
   systemd.tmpfiles.rules = [
     "d ${vmHome} 0755 ${username} ${group} -"
