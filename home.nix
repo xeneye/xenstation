@@ -63,6 +63,7 @@
       nx = "cd /etc/nixos";
       ollama = "docker exec -it ollama ollama";
       hermes = "docker exec -it hermes hermes";
+      hermes-update = "cd /etc/nixos/docker/ai && docker compose pull hermes && docker compose up -d hermes";
       geekstation = "ssh xeneye@192.168.1.100";
     };
   };
