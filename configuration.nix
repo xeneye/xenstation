@@ -15,7 +15,7 @@
     ./modules/packages.nix
     ./modules/pipewire.nix
     ./modules/printer.nix
-    ./modules/steam.nix
+    #./modules/steam.nix
     ./modules/syncthing.nix
     ./modules/vm.nix
   ];
@@ -85,11 +85,14 @@
     openFirewall = true;
   };
 
+  hardware.uinput.enable = true;
+
   users.users.xeneye = {
     isNormalUser = true;
     extraGroups = [
       "docker"
       "input"
+      "uinput"
       "kvm"
       "libvirtd"
       "networkmanager"

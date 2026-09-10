@@ -29,6 +29,7 @@
     openhue-cli
     pciutils
     pulseaudio
+    refind
     ripgrep
     statix
     tree
