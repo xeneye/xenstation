@@ -57,15 +57,9 @@ services:
       - "8642:8642"
 
     volumes:
+      # The entire Hermes state lives here.
+      # This includes .env, config.yaml, sessions, skills, memories, etc.
       - ./data/hermes:/opt/data
-      # Long syntax so a MISSING .env errors loudly at `up` instead of
-      # Docker silently creating a .env DIRECTORY (the file/folder bug).
-      - type: bind
-        source: ./.env
-        target: /opt/data/.env
-        read_only: true
-        bind:
-          create_host_path: false
 
     environment:
       TZ: Europe/London
@@ -76,5 +70,6 @@ services:
       API_SERVER_KEY: "5f4d1d3b9b0d8c9c8f0f7a7f4c0b8e3a1d9e7f6c5b4a39281726354455667788"
 
       OLLAMA_BASE_URL: http://ollama:11434
+
       OPENAI_API_BASE_URL: http://hermes:8642/v1
-      OPENAI_API_KEY: 5f4d1d3b9b0d8c9c8f0f7a7f4c0b8e3a1d9e7f6c5b4a39281726354455667788
+      OPENAI_API_KEY: "5f4d1d3b9b0d8c9c8f0f7a7f4c0b8e3a1d9e7f6c5b4a39281726354455667788"
