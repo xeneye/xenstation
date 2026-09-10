@@ -32,15 +32,18 @@
 
       ExecStartPre = [
         "${pkgs.coreutils}/bin/mkdir -p /etc/nixos/docker/ai/data/hermes"
-        "${pkgs.coreutils}/bin/chown -R 10000:10000 /etc/nixos/docker/ai/data/hermes"
-        "${pkgs.coreutils}/bin/chmod 0700 /etc/nixos/docker/ai/data/hermes"
 
+        # Create the Hermes .env inside the persistent Hermes data directory.
+        "${pkgs.bash}/bin/bash -c 'if [ -d /etc/nixos/docker/ai/data/hermes/.env ]; then echo \"ERROR: /etc/nixos/docker/ai/data/hermes/.env is a DIRECTORY. Remove it before rebuilding.\"; exit 1; fi; if [ ! -f /etc/nixos/docker/ai/data/hermes/.env ]; then ${pkgs.coreutils}/bin/install -m 600 /etc/nixos/docker/ai/.env.example /etc/nixos/docker/ai/data/hermes/.env; fi'"
+
+        # Create the initial Hermes config if it does not already exist.
         "${pkgs.bash}/bin/bash -c 'if [ ! -f /etc/nixos/docker/ai/data/hermes/config.yaml ]; then ${pkgs.coreutils}/bin/install -m 600 /etc/nixos/docker/ai/hermes-config.yaml /etc/nixos/docker/ai/data/hermes/config.yaml; fi'"
 
-        # Auto-create .env from the template if missing (secrets-free:
-        # Ollama needs no auth). Fails only if it's a junk DIRECTORY left
-        # behind by an older `docker compose up`.
-        "${pkgs.bash}/bin/bash -c 'if [ -d /etc/nixos/docker/ai/.env ]; then echo \"ERROR: /etc/nixos/docker/ai/.env is a DIRECTORY (created by an earlier compose up with no .env file). rm -rf it, then rebuild.\"; exit 1; fi; if [ ! -f /etc/nixos/docker/ai/.env ]; then ${pkgs.coreutils}/bin/install -m 600 /etc/nixos/docker/ai/.env.example /etc/nixos/docker/ai/.env; fi'"
+        # Hermes runs as UID/GID 10000 inside the official image.
+        "${pkgs.coreutils}/bin/chown -R 10000:10000 /etc/nixos/docker/ai/data/hermes"
+        "${pkgs.coreutils}/bin/chmod 0700 /etc/nixos/docker/ai/data/hermes"
+        "${pkgs.coreutils}/bin/chmod 0600 /etc/nixos/docker/ai/data/hermes/.env"
+        "${pkgs.coreutils}/bin/chmod 0600 /etc/nixos/docker/ai/data/hermes/config.yaml"
       ];
 
       ExecStart = "${pkgs.docker}/bin/docker compose up -d";
@@ -50,6 +53,7 @@
 
   systemd.services.docker-ai-ollama-pull = {
     description = "Pull default Ollama model";
+
     after = ["docker-ai.service"];
     requires = ["docker-ai.service"];
     wantedBy = ["multi-user.target"];
@@ -57,10 +61,12 @@
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
+
       ExecStart = pkgs.writeShellScript "ollama-pull" ''
         until [ "$(${pkgs.docker}/bin/docker inspect --format='{{.State.Health.Status}}' ollama 2>/dev/null)" = "healthy" ]; do
-        ${pkgs.coreutils}/bin/sleep 2
+          ${pkgs.coreutils}/bin/sleep 2
         done
+
         ${pkgs.docker}/bin/docker exec ollama ollama pull edtorre/gemma4:12b-agent-20gbGPU
       '';
     };
