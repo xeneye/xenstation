@@ -15,7 +15,7 @@
     ./modules/packages.nix
     ./modules/pipewire.nix
     ./modules/printer.nix
-    #./modules/steam.nix
+    ./modules/steam.nix
     ./modules/syncthing.nix
     ./modules/vm.nix
   ];
