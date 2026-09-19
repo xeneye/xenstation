@@ -8,6 +8,7 @@
     chafa
     davinci-resolve
     deadnix
+    deno
     dmidecode
     eza
     fd
@@ -34,6 +35,7 @@
     statix
     tree
     tailscale
+    unzip
     vlc
     wget
     wl-clipboard
