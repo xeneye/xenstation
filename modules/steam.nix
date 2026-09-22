@@ -5,7 +5,10 @@
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = false;
 
-    extraCompatPackages = [pkgs.proton-ge-bin];
+    extraCompatPackages = [
+      pkgs.proton-ge-bin
+      pkgs.proton-cachyos-v3
+    ];
 
     package = pkgs.steam.override {
       extraPkgs = pkgs:
