@@ -13,7 +13,6 @@
     colorschemes.onedark.enable = true;
 
     plugins = {
-      # Prevents the deprecation warning from Telescope
       web-devicons.enable = true;
 
       lualine.enable = true;
