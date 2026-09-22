@@ -1,0 +1,12 @@
+Openweb Config:
+
+1.  Navigate to your Open WebUI instance (http://localhost:3000).
+2.  Click on your Profile/Username in the bottom left and go to Settings.
+3.  Select Connections from the sidebar.
+4.  Look for the OpenAI API section:
+*   Set the URL: http://hermes:8642/v1
+*   Set the Key: 5f4d1d3b9b0d8c9c8f0f7a7f4c0b8e3a1d9e7f6c5b4a39281726354455667788 (the key from your docker-compose.yaml).
+5.  Click the Refresh icon (the small circular arrows) next to the API key field.
+
+Flake Update:
+nix --extra-experimental-features "nix-command flakes" flake update
