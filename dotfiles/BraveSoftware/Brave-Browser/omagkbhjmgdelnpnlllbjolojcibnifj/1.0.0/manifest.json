@@ -1,7 +1,0 @@
-{
-  "description": "Brave Ad Block Updater extension",
-  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArjI+6jFmXNYpfhDrqUGbLWYfAyXwPUFQXXeG4JRQ7nEcZuKF6tEe8moGGS8lDkxZhk/IOxtu243YW8zIgnbHN47W9DknsB9djtQUfg3xT99iEOYCvfkh65EgLyVv3eagUvX8jLBpll/Wiumjxjo+rVdv90M46doS0xJpigjZn5jUVsCPKWaaRp2Gq43bSfPLQpR/0bMjU61C7lj0CXDEzk1OUlpeskbFxbtkNnywcVmAfKowqogDistnMazMldJrK5c1gnfj1Cl4whrZ9MWOAUTU32P4ET5ClE97BP27G/1IT9qexowT/JS5mVsReodp3wSVdyHoAIZ9cNtjkJ4xVQIDAQAB",
-  "manifest_version": 2,
-  "name": "Brave Ad Block Updater (Allow LinkedIn Embeds (plaintext))",
-  "version": "1.0.0"
-}

@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<FileZilla3 version="3.71.1" platform="*nix">
-	<Server Host="192.168.1.100" Port="22">
-		<Hostkey>AAAAC3NzaC1lZDI1NTE5AAAAIGouIyUfLuL9nG3K75HVqLTfuZsVtIdt9bJsmatGLWi7</Hostkey>
-	</Server>
-	<Server Host="46.232.210.175" Port="22">
-		<Hostkey>AAAAC3NzaC1lZDI1NTE5AAAAIEeUyo8KBPpynmmm+MxymTN1eggpeeVTT/9O3ImqAF41</Hostkey>
-	</Server>
-</FileZilla3>

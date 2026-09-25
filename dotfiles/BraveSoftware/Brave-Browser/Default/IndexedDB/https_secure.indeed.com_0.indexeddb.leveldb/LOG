@@ -1,6 +1,0 @@
-2026/09/25-15:55:35.078 1343 Creating DB /home/xeneye/.config/BraveSoftware/Brave-Browser/Default/IndexedDB/https_secure.indeed.com_0.indexeddb.leveldb since it was missing.
-2026/09/25-15:55:35.095 1343 Reusing MANIFEST /home/xeneye/.config/BraveSoftware/Brave-Browser/Default/IndexedDB/https_secure.indeed.com_0.indexeddb.leveldb/MANIFEST-000001
-2026/09/25-15:55:42.563 1344 Level-0 table #5: started
-2026/09/25-15:55:42.569 1344 Level-0 table #5: 1042 bytes OK
-2026/09/25-15:55:42.580 1344 Delete type=0 #3
-2026/09/25-15:55:42.580 1344 Manual compaction at level-0 from (begin) .. (end); will stop at (end)
