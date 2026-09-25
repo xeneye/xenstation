@@ -1,0 +1,7 @@
+Threshold = 50
+DisplayMonitorSources = false
+EnableUpdates = true
+FilterInput = true
+FilterOutput = false
+LastUsedInput = "alsa_input.usb-ZOOM_Corporation_H1_000000000000-00.iec958-stereo"
+LastUsedOutput = ""

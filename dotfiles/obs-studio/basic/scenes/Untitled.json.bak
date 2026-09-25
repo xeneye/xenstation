@@ -1,7 +1,7 @@
 {
     "name": "Untitled",
     "DesktopAudioDevice1": {
-        "prev_ver": 536936450,
+        "prev_ver": 537001986,
         "name": "Desktop Audio",
         "uuid": "63103a46-9bf5-4c51-99c2-9ad8ce72b8c4",
         "id": "pulse_output_capture",
@@ -32,7 +32,7 @@
         "private_settings": {}
     },
     "AuxAudioDevice1": {
-        "prev_ver": 536936450,
+        "prev_ver": 537001986,
         "name": "Mic/Aux",
         "uuid": "32054ba8-d62c-4c3f-be7a-f29ede9d519f",
         "id": "pulse_input_capture",
@@ -64,7 +64,7 @@
     },
     "sources": [
         {
-            "prev_ver": 536936450,
+            "prev_ver": 537001986,
             "name": "Scene",
             "uuid": "bcf77d77-75c0-4bfe-b384-a19461a15d64",
             "id": "scene",
@@ -133,7 +133,7 @@
     "saved_projectors": [],
     "preview_locked": false,
     "scaling_enabled": false,
-    "scaling_level": 0,
+    "scaling_level": -12,
     "scaling_off_x": 0.0,
     "scaling_off_y": 0.0,
     "virtual-camera": {

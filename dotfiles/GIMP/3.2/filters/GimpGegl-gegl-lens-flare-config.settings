@@ -1,0 +1,12 @@
+# settings
+
+(GimpGegl-gegl-lens-flare-config "2020-06-06 11:54:48"
+    (time 1591440888)
+    (pos-x 0.5)
+    (pos-y 0.41399999999999998))
+(GimpGegl-gegl-lens-flare-config "2020-06-06 11:51:09"
+    (time 1591440669)
+    (pos-x 0.5)
+    (pos-y 0.379))
+
+# end of settings

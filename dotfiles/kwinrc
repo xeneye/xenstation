@@ -29,7 +29,15 @@ translucencyEnabled=true
 windowapertureEnabled=false
 zoomEnabled=false
 
+[Tiling][3dfdc09a-3040-4073-8533-cb06e0358748][b2e815cb-3930-45f4-91b5-1d9c8c7730f2]
+padding=4
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
 [Tiling][3dfdc09a-3040-4073-8533-cb06e0358748][dc814f24-dd5d-4f82-b2a8-fa9c59b72b54]
+padding=4
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][75678488-2f23-4419-8956-57116c87b4a8][b2e815cb-3930-45f4-91b5-1d9c8c7730f2]
 padding=4
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
@@ -39,7 +47,7 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 
 [Windows]
 BorderSnapZone=20
-CenterSnapZone=20
+CenterSnapZone=40
 DelayFocusInterval=200
 FocusPolicy=FocusFollowsMouse
 NextFocusPrefersMouse=true
@@ -52,6 +60,7 @@ Reference=200
 
 [Xwayland]
 Scale=1.25
+XwaylandEisNoPromptApps=steam
 
 [org.kde.kdecoration2]
 ButtonsOnLeft=MF

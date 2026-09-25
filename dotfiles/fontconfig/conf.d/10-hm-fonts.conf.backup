@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<fontconfig>
+ <cachedir>/nix/store/mxfqislw0f33g2gjsq2agswi7qgka2v6-home-manager-path/lib/fontconfig/cache</cachedir>
+ <description>Add fonts in the Nix user profile</description>
+ <dir>/nix/store/mxfqislw0f33g2gjsq2agswi7qgka2v6-home-manager-path/lib/X11/fonts</dir>
+ <dir>/nix/store/mxfqislw0f33g2gjsq2agswi7qgka2v6-home-manager-path/share/fonts</dir>
+ <dir>/etc/profiles/per-user/xeneye/lib/X11/fonts</dir>
+ <dir>/etc/profiles/per-user/xeneye/share/fonts</dir>
+ <include ignore_missing="yes">/nix/store/mxfqislw0f33g2gjsq2agswi7qgka2v6-home-manager-path/etc/fonts/conf.d</include>
+ <include ignore_missing="yes">/nix/store/mxfqislw0f33g2gjsq2agswi7qgka2v6-home-manager-path/etc/fonts/fonts.conf</include>
+ <match target="pattern">
+  <edit mode="assign" name="rgba">
+   <const>vbgr</const>
+  </edit>
+ </match>
+ <match target="pattern">
+  <edit mode="assign" name="hinting">
+   <bool>true</bool>
+  </edit>
+ </match>
+ <match target="pattern">
+  <edit mode="assign" name="hintstyle">
+   <const>hintslight</const>
+  </edit>
+ </match>
+ <match target="pattern">
+  <edit mode="assign" name="antialias">
+   <bool>true</bool>
+  </edit>
+ </match>
+</fontconfig>

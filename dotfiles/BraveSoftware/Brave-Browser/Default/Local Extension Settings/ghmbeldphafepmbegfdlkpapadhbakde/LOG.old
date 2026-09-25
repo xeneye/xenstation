@@ -1,0 +1,21 @@
+2026/09/25-16:54:59.592 534b Reusing MANIFEST /home/xeneye/.config/BraveSoftware/Brave-Browser/Default/Local Extension Settings/ghmbeldphafepmbegfdlkpapadhbakde/MANIFEST-000001
+2026/09/25-16:54:59.592 534b Recovering log #143
+2026/09/25-16:54:59.593 534b Reusing old log /home/xeneye/.config/BraveSoftware/Brave-Browser/Default/Local Extension Settings/ghmbeldphafepmbegfdlkpapadhbakde/000143.log 
+2026/09/25-16:55:01.812 534c Level-0 table #147: started
+2026/09/25-16:55:01.834 534c Level-0 table #147: 4986852 bytes OK
+2026/09/25-16:55:01.849 534c Delete type=0 #143
+2026/09/25-17:33:45.903 534d Level-0 table #149: started
+2026/09/25-17:33:45.926 534d Level-0 table #149: 4995098 bytes OK
+2026/09/25-17:33:45.951 534d Delete type=0 #146
+2026/09/25-17:33:46.494 534d Level-0 table #151: started
+2026/09/25-17:33:46.516 534d Level-0 table #151: 4972881 bytes OK
+2026/09/25-17:33:46.539 534d Delete type=0 #148
+2026/09/25-17:33:46.539 534d Compacting 4@0 + 1@1 files
+2026/09/25-17:33:46.564 534d Generated table #152@0: 8 keys, 2511085 bytes
+2026/09/25-17:33:46.570 534d Compacted 4@0 + 1@1 files => 2511085 bytes
+2026/09/25-17:33:46.589 534d compacted to: files[ 0 1 1 0 0 0 0 ]
+2026/09/25-17:33:46.589 534d Delete type=2 #142
+2026/09/25-17:33:46.589 534d Delete type=2 #144
+2026/09/25-17:33:46.589 534d Delete type=2 #147
+2026/09/25-17:33:46.589 534d Delete type=2 #149
+2026/09/25-17:33:46.589 534d Delete type=2 #151

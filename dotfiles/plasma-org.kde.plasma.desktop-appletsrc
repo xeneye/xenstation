@@ -4,22 +4,6 @@ RightButton;NoModifier=org.kde.contextmenu
 [ActionPlugins][1]
 RightButton;NoModifier=org.kde.contextmenu
 
-[Containments][1]
-ItemGeometries-1920x1080=
-ItemGeometries-3072x1728=
-ItemGeometriesHorizontal=
-activityId=98e00d75-b3f4-4b48-963a-908ee002b5e1
-formfactor=0
-immutability=1
-lastScreen=0
-location=0
-plugin=org.kde.plasma.folder
-wallpaperplugin=org.kde.image
-
-[Containments][1][Wallpaper][org.kde.image][General]
-Image=file:///home/xeneye/Pictures/Wallpaper/2K Ultrawide Sci-Fi/Criptica Diethyl-Nix.png
-SlidePaths=/nix/store/px35qvw5ijyrsfdy5kih4spw0bdf60m5-breeze-6.6.6/share/wallpapers/,/run/current-system/sw/share/wallpapers/
-
 [Containments][2]
 activityId=
 formfactor=2
@@ -66,7 +50,7 @@ immutability=1
 plugin=org.kde.plasma.icontasks
 
 [Containments][2][Applets][5][Configuration][General]
-launchers=applications:systemsettings.desktop,file:///nix/store/rrnf5mwns9nr8y4wqyc14sfpjcq1spf9-system-path/share/applications/org.kde.konsole.desktop,preferred://filemanager,preferred://browser,applications:steam.desktop
+launchers=applications:systemsettings.desktop,file:///nix/store/43klhm7l3i73i82wa2fkg7fd52fbqsfj-system-path/share/applications/org.kde.konsole.desktop,preferred://filemanager,preferred://browser,applications:steam.desktop
 
 [Containments][2][Applets][6]
 immutability=1
@@ -162,6 +146,22 @@ shownItems=org.kde.plasma.volume,org.kde.plasma.bluetooth,org.kde.plasma.network
 
 [Containments][2][General]
 AppletOrder=3;5;6;7;20
+
+[Containments][21]
+ItemGeometries-1920x1080=
+ItemGeometries-3072x1728=
+ItemGeometriesHorizontal=
+activityId=a787fba8-9492-44d2-9ab3-e389bfe59f0c
+formfactor=0
+immutability=1
+lastScreen=0
+location=0
+plugin=org.kde.plasma.folder
+wallpaperplugin=org.kde.image
+
+[Containments][21][Wallpaper][org.kde.image][General]
+Image=file:///home/xeneye/Pictures/Wallpaper/2K Ultrawide Sci-Fi/Criptica Diethyl-Nix.png
+SlidePaths=/nix/store/hadkjsgq1hl66rb12mgg7gyfg57bzkj6-breeze-6.7.5/share/wallpapers/,/run/current-system/sw/share/wallpapers/
 
 [ScreenMapping]
 itemsOnDisabledScreens=

@@ -1,0 +1,6 @@
+2026/09/25-16:54:59.421 534b Reusing MANIFEST /home/xeneye/.config/BraveSoftware/Brave-Browser/Default/Sync Data/LevelDB/MANIFEST-000001
+2026/09/25-16:54:59.421 534b Recovering log #3
+2026/09/25-16:54:59.421 534b Reusing old log /home/xeneye/.config/BraveSoftware/Brave-Browser/Default/Sync Data/LevelDB/000003.log 
+2026/09/25-17:32:18.196 534d Level-0 table #5: started
+2026/09/25-17:32:18.207 534d Level-0 table #5: 60380 bytes OK
+2026/09/25-17:32:18.218 534d Delete type=0 #3

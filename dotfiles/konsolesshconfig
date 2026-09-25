@@ -1,0 +1,22 @@
+[Global plugin config]
+manageProfile=false
+
+[SSH Config][github.com]
+hostname=github.com
+identifier=github.com
+importedFromSshConfig=true
+port=
+profileName=Built-in
+sshkey=~/.ssh/id_ed25519
+useSshConfig=true
+username=git
+
+[SSH Config][gitlab.com]
+hostname=gitlab.com
+identifier=gitlab.com
+importedFromSshConfig=true
+port=
+profileName=
+sshkey=~/.ssh/id_ed25519
+useSshConfig=true
+username=git

@@ -2,9 +2,15 @@
     {
         "data": [
             {
+                "abmLevel": 0,
                 "allowDdcCi": true,
                 "allowSdrSoftwareBrightness": true,
                 "autoBrightnessCurve": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
                     0,
                     0,
                     0,
@@ -24,6 +30,8 @@
                 "edidHash": "fb73f27c63d186575433f8d3cfea3e8b",
                 "edidIdentifier": "GSM 49352 16843009 1 2022 0",
                 "edrPolicy": "always",
+                "hdrColorProfileSource": "EDID",
+                "hdrIccProfilePath": "",
                 "highDynamicRange": true,
                 "iccProfilePath": "",
                 "maxBitsPerColor": 0,
@@ -41,7 +49,7 @@
                 "sdrGamutWideness": 0,
                 "sharpness": 0,
                 "transform": "Normal",
-                "uuid": "dc814f24-dd5d-4f82-b2a8-fa9c59b72b54",
+                "uuid": "b2e815cb-3930-45f4-91b5-1d9c8c7730f2",
                 "vrrPolicy": "Automatic",
                 "wideColorGamut": true
             }
