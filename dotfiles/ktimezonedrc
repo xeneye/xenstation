@@ -1,0 +1,4 @@
+[TimeZones]
+LocalZone=Europe/London
+ZoneinfoDir=/etc/zoneinfo
+Zonetab=/etc/zoneinfo/zone.tab

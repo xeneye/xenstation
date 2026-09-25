@@ -1,0 +1,27 @@
+{
+  "version": "2026.723.1724",
+  "showBlockedCount": false,
+  "rulesets": [
+    "+block-lan",
+    "+adguard-spyware-url",
+    "+annoyances-ai",
+    "+annoyances-cookies",
+    "+annoyances-overlays",
+    "+annoyances-social",
+    "+annoyances-others",
+    "+annoyances-notifications",
+    "+annoyances-widgets",
+    "+ublock-experimental",
+    "+ubol-tests"
+  ],
+  "filteringModes": {
+    "none": [
+      "www.avforums.com"
+    ],
+    "basic": [],
+    "optimal": [],
+    "complete": [
+      "all-urls"
+    ]
+  }
+}

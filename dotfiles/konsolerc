@@ -1,0 +1,18 @@
+[Desktop Entry]
+DefaultProfile=Xeneye.profile
+
+[General]
+ConfigVersion=1
+
+[KonsoleWindow]
+RememberWindowSize=false
+
+[Notification Messages]
+CloseAllTabs=true
+CloseSingleTab=true
+
+[TabBar]
+CloseTabOnMiddleMouseButton=true
+
+[UiSettings]
+ColorScheme=
