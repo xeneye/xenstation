@@ -20,6 +20,9 @@
       url = "https://flakehub.com/f/edolstra/blender-bin/*";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hermes-agent = {
+      url = "github:NousResearch/hermes-agent";
+    };
   };
   outputs = {
     nixpkgs,
@@ -46,6 +49,7 @@
             useGlobalPkgs = true;
             useUserPackages = true;
             backupFileExtension = "backup";
+            extraSpecialArgs = {inherit inputs;};
             users.xeneye = {
               imports = [
                 nixvim.homeModules.nixvim

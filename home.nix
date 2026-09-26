@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./modules/espanso.nix
     ./modules/fastfetch.nix
@@ -21,6 +25,7 @@
     deadnix
     espanso-wayland
     eza
+    inputs.hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.desktop
   ];
 
   programs.git = {
