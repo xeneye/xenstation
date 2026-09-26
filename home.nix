@@ -25,7 +25,9 @@
     deadnix
     espanso-wayland
     eza
-    inputs.hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.desktop
+    (inputs.hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.desktop.override {
+      extraEnv = {HERMES_DESKTOP_NVIDIA_SWIFTSHADER = "0";};
+    })
   ];
 
   programs.git = {
