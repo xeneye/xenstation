@@ -10,3 +10,190 @@ Openweb Config:
 
 Flake Update:
 nix --extra-experimental-features "nix-command flakes" flake update
+
+---
+
+# Fresh install — Hermes Desktop over Docker
+
+Scope: what to do on a new machine (or after wiping `data/hermes/`) to reproduce the
+current setup — containerised Hermes, the official desktop app attached over a remote
+gateway, OpenWebUI talking to the local Ollama model, no host-side Hermes home.
+
+Append this to `post-install.txt`, after the existing OpenWebUI and Flake Update sections.
+
+---
+
+## 0. What the flake already handles (no manual step)
+
+- `docker/ai/compose.yml` — publishes `8642` (OpenAI-compatible API server) and
+  `127.0.0.1:9119` (dashboard), sets `HERMES_DASHBOARD=1`, the API-server env and `TZ`.
+- `docker-ai.nix` — creates `data/hermes` with `10000:10000` / `0700`, seeds `.env` from
+  `.env.example` **only if missing**, seeds `config.yaml` from `hermes-config.yaml` **only
+  if missing**, then runs `docker compose up -d` at boot.
+- `home.nix` — installs `hermes-desktop` from the `hermes-agent` flake input, with
+  `HERMES_DESKTOP_NVIDIA_SWIFTSHADER=0` baked into its launcher via `extraEnv`.
+
+So the steps below are only the parts that live **outside git**.
+
+---
+
+## 1. Before first boot — make `.env.example` complete
+
+`data/hermes/.env` is not tracked. On a fresh install it is recreated from
+`/etc/nixos/docker/ai/.env.example`, so the template must carry the dashboard keys:
+
+```
+HERMES_CUSTOM_OLLAMA_11434_API_KEY=ollama-local
+HERMES_DASHBOARD_BASIC_AUTH_USERNAME=<your username>
+HERMES_DASHBOARD_BASIC_AUTH_PASSWORD=<pick one, no spaces or #>
+HERMES_DASHBOARD_BASIC_AUTH_SECRET=<generated on the machine, see below>
+```
+
+Why these are not optional:
+
+- The dashboard binds `0.0.0.0` inside the container, and Hermes **fails closed** at startup
+  on a non-loopback bind with no auth provider registered. No username/password means no
+  dashboard, and therefore no desktop app.
+- `_SECRET` is the session-signing key. Without it a new random key is generated on every
+  container start and you are signed out each restart.
+
+Generate the secret on the target machine (works without `openssl` installed):
+
+```sh
+head -c 32 /dev/urandom | od -An -tx1 | tr -d ' \n'
+```
+
+Append it — never rewrite the file (see the ownership trap in §8):
+
+```sh
+printf 'HERMES_DASHBOARD_BASIC_AUTH_SECRET=%s\n' \
+  "$(head -c 32 /dev/urandom | od -An -tx1 | tr -d ' \n')" \
+  | sudo tee -a /etc/nixos/docker/ai/data/hermes/.env >/dev/null
+```
+
+Optional improvement: add a line to the `docker-ai.service` `ExecStartPre` that appends a
+generated `HERMES_DASHBOARD_BASIC_AUTH_SECRET` when it is missing, matching the existing
+`.env` bootstrap. Then only the password is manual.
+
+---
+
+## 2. First boot — sign in to Nous inside the container
+
+`auth.json` holds the Portal refresh token and is not in git. Without it the Nous provider
+has no credentials and the default model cannot answer:
+
+```sh
+docker exec -it hermes hermes setup --portal
+```
+
+The token persists in `data/hermes/auth.json`, so this is once per install.
+
+---
+
+## 3. Verify the backend before touching the app
+
+```sh
+docker ps --filter name=hermes --format '{{.Names}}  {{.Status}}  {{.Ports}}'
+docker logs --tail 40 hermes | grep -i dashboard
+ss -ltn | grep 9119
+curl -s http://localhost:9119/api/status | tr ',' '\n' | grep -iE 'auth_required|auth_providers'
+```
+
+Wanted: container Up with `127.0.0.1:9119->9119/tcp`, a `HERMES_DASHBOARD_READY port=9119`
+line, something listening on 9119, and `"auth_required":true` with `"basic"` in the
+providers — that last pair is exactly what the app's sign-in needs.
+
+---
+
+## 4. Keep the config seed file honest
+
+`data/hermes/config.yaml` is not tracked either; `docker-ai.nix` seeds it from
+`/etc/nixos/docker/ai/hermes-config.yaml` only when it is missing. Keep that seed file in
+sync with what you actually run — currently the Nous default model, `providers.ollama`, and
+the nous backends for web/browser/image_gen/video_gen — or expect to reconfigure the model
+and providers after a fresh boot.
+
+```sh
+sudo grep -n -A4 '^model:' /etc/nixos/docker/ai/data/hermes/config.yaml
+```
+
+---
+
+## 5. Desktop app — connect before onboarding
+
+Installed by the flake already (launcher entry included, `hermes-desktop` on PATH).
+
+**Settings → Gateways → Remote gateway**
+
+```
+Remote URL:  http://localhost:9119      # or the tailscale IP if the app runs elsewhere
+Sign in:     HERMES_DASHBOARD_BASIC_AUTH_USERNAME / _PASSWORD
+Save and reconnect
+```
+
+**Order matters.** Do this *before* working through any onboarding prompts. Onboarding
+starts a local backend and creates a full host-side `~/.hermes` (sessions, `state.db`,
+`auth.json`, `SOUL.md`, `skills/`). The app's own persistent state is only
+`~/.hermes/{logs,desktop-plugins}` — so if a full home exists, onboarding made it.
+
+If that happened:
+
+```sh
+sudo rm -rf /home/<user>/.hermes     # plain rm fails: bundled skills are installed read-only
+```
+
+Then relaunch — the remote connection is stored in the app's Electron userData
+(`~/.config/Hermes`), not in `HERMES_HOME`, so deleting `~/.hermes` does not undo it.
+
+---
+
+## 6. OpenWebUI  (existing section — unchanged)
+
+Not declarative: the connection lives in the `open-webui` data volume, so it must be
+re-added by hand on a fresh install. Use the `API_SERVER_KEY` from `compose.yml` as the key
+and `http://hermes:8642/v1` as the URL, then hit Refresh.
+
+---
+
+## 7. Updating — two independent clocks
+
+- **Container:** `hermes-update` (`docker compose pull hermes && docker compose up -d hermes`).
+- **Desktop app:** `cd /etc/nixos && nix flake update hermes-agent && update`.
+
+`hermes update` does neither. A long build after a flake update means upstream moved its
+nixpkgs/electron pins — run `nixos-rebuild build --flake /etc/nixos#xenstation` first if you
+want to watch it build before activating.
+
+---
+
+## 8. Traps worth remembering
+
+- **`.env` ownership** must stay `10000:10000` and mode `0600`. `tee -a` preserves it;
+  `sed -i` and editors that write by renaming can leave it root-owned — re-assert
+  `chown 10000:10000` + `chmod 600` afterwards.
+- **Duplicate keys in `.env`** resolve by loader convention, so a stray empty one can
+  silently disable the dashboard provider. Check with:
+  `sudo awk -F= '/^[A-Z][A-Z0-9_]*=/{if(seen[$1]++) print "duplicate: " $1}' <file>`
+- **`API_SERVER_KEY`** is shared between the hermes container and OpenWebUI — change both
+  together.
+- **Slow desktop UI** on NVIDIA 580+ is normally the SwiftShader fallback (CPU rendering).
+  The flake override prevents it; if a launch line ever mentions SwiftShader again, confirm
+  with `grep -c HERMES_DESKTOP_NVIDIA_SWIFTSHADER "$(readlink -f "$(command -v hermes-desktop)")"`
+  and test with `HERMES_DESKTOP_NVIDIA_SWIFTSHADER=0 hermes-desktop`.
+- **One dashboard serves every profile** — never add a port per profile.
+- **In remote mode, the app's Settings → Model writes the container's `config.yaml`**, which
+  every surface resolving to the global default follows (new desktop chats, CLI/TUI, and
+  API-server clients). The composer's model picker is per-chat and writes nothing.
+
+---
+
+## 9. End-to-end verification
+
+| Check | Command / place | Expected |
+| --- | --- | --- |
+| Stack up | `docker ps` | `hermes`, `ollama`, `open-webui` all Up |
+| Dashboard listening | `ss -ltn \| grep 9119` | `127.0.0.1:9119` |
+| Auth gate on | `curl -s http://localhost:9119/api/status \| tr ',' '\n' \| grep auth` | `true` + `"basic"` |
+| Desktop connected | app → Settings → Gateways | remote `http://localhost:9119` active |
+| No local backend | `ls -la ~/.hermes` | only `logs/` and `desktop-plugins/` |
+| OpenWebUI | Settings → Connections → Refresh | models listed from `http://hermes:8642/v1` |
